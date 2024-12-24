@@ -21,7 +21,16 @@ export class BankAccount {
     return this.#balance - amount > 0;
   }
 
+  #isValidAmount(amount: number) {
+    return amount > 0;
+  }
+
   withdraw(amount: number) {
+    if (!this.#isValidAmount(amount)) {
+      console.log('Invalid amount');
+      return;
+    }
+
     if (this.#isTrasferable(amount)) {
       this.#balance = this.#balance - amount;
       console.log(`Withdrawn ${amount} from ${this.#accountName}`);
@@ -32,16 +41,22 @@ export class BankAccount {
   }
 
   deposit(amount: number) {
-    if (amount > 0) {
-      this.#balance = this.#balance + amount;
-      console.log(`Deposited ${amount} to ${this.#accountName}`);
-      console.log(`New balance: ${this.#balance}`);
-    } else {
+    if (!this.#isValidAmount(amount)) {
       console.log('Invalid amount');
+      return;
     }
+
+    this.#balance = this.#balance + amount;
+    console.log(`Deposited ${amount} to ${this.#accountName}`);
+    console.log(`New balance: ${this.#balance}`);
   }
 
   transfer(amount: number, bankAccount: BankAccount) {
+    if (!this.#isValidAmount(amount)) {
+      console.log('Invalid amount');
+      return;
+    }
+
     if (this.#isTrasferable(amount)) {
       bankAccount.deposit(amount);
       this.#balance = this.#balance - amount;
