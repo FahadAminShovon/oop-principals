@@ -1,4 +1,4 @@
-import { CreditCard } from './Creditcard';
+import { CreditCard } from './CreditCard1';
 
 // Create a new CreditCard instance with a starting balance of MAXIMUM_LIMIT (500,000)
 const creditCard = new CreditCard();
