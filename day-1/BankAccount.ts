@@ -72,4 +72,8 @@ export class BankAccount {
     console.log(`Account Number: ${this.#accountNumber}`);
     console.log(`Balance: ${this.#balance}`);
   }
+
+  get balance() {
+    return this.#balance;
+  }
 }

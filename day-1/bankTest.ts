@@ -12,6 +12,8 @@ const account2 = new BankAccount({
   balance: 500,
 });
 
+const bankAccounts: BankAccount[] = [account1, account2];
+
 console.log('=== before any transaction ===');
 account1.showDetails();
 account2.showDetails();
@@ -34,3 +36,10 @@ console.log('=== end transactions ===');
 console.log('=== after transactions ===');
 account1.showDetails();
 account2.showDetails();
+
+const totalBalance = bankAccounts.reduce(
+  (acc, account) => acc + account.balance,
+  0
+);
+
+console.log(`Total balance: ${totalBalance}`);
